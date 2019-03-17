@@ -1,0 +1,22 @@
+{
+  "name": "mintahazi2019tavasz",
+  "version": "1.0.0",
+  "description": "Szeretnénk egy rendszert, ahol nagymamámakat és befőtteket adminisztrálunk, minden befőtt pontosan egy nagymamához tartozik.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VITMAV42/mintahazi2019tavasz.git"
+  },
+  "author": "Zsombor Paroczi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VITMAV42/mintahazi2019tavasz/issues"
+  },
+  "homepage": "https://github.com/VITMAV42/mintahazi2019tavasz#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
