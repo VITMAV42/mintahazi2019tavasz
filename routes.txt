@@ -1,0 +1,84 @@
+
+Nagymamák és befőttek
+- index.html - login form (egy darab szöveg), top nagymamák listája
+- nagymamalista.html - táblázat (edit, delete, befottlistagomb), új nagymama gomb
+- nagymamaeditnew.html - nagyiadat edit + save + cancel
+- egynagymamabefottjei.html - táblázat (edit, delete), új befott gomb
+- befotteditnew.html - befott adatok edit + save + cancel
+
+Routing
+
+renderMW
+
+middleware/auth/
+    checkPassMW.js
+    authMW.js
+
+middleware/nagymama/
+    getTopNagymamakMW
+    getNagymamamakMW
+    getNagymamaMw
+    saveNagymamaMW
+    delNagymamaMw
+
+middleware/befott/
+    getBefottekMw.js
+    getBefottMw.js
+    saveBefottMw.js
+    delBefottMw.js
+
+
+GET, POST  /                        - post esetén jelszó ellenőrzés, ha ok, nagymamára redirect, vissza a főoldalra
+    getTopNagymamakMW
+    checkPassMW
+    renderMW(index.html)
+
+GET /nagymama
+    authMW
+    getNagymamakMW
+    renderMW(nagymamalista.html)
+
+GET,POST /nagymama/new
+    authMW
+    saveNagymamaMW
+    renderMW(nagymamaeditnew.html (new))
+        - ha volt valami érték beküldbe -> form elemek azzal töltődjenek fel
+        - ha nem, akkor nem
+
+GET,POST /nagymama/edit/:nagymamaid     - nagymamaeditnew.html (edit)
+    authMW
+    getNagymamaMw
+    saveNagymamaMW
+    renderMW(nagymamaeditnew.html (new))
+            - ha volt valami érték beküldbe -> form elemek azzal töltődjenek fel
+            - ha nem, akkor nem
+
+GET /nagymama/del/:nagymamaid
+    authMW
+    getNagymamaMw
+    delNagymamaMw
+
+GET /befott/:nagymamaid
+    authMW
+    getNagymamaMw
+    getBefottekMw
+    renderMW(egynagymamabefottjei.html)
+
+GET,POST /befott/:nagymamaid/new  -
+    authMW
+    getNagymamaMw
+    getBefottMw
+    saveBefottMw
+    renderMW(befotteditnew.html)
+
+GET,POST /befott/:nagymamaid/edit/:befottid  -
+    authMW
+    getNagymamaMw
+    getBefottMw
+    saveBefottMw
+    renderMW(befotteditnew.html)
+
+GET /befott/:nagymamaid/del/:befottid
+    authMW
+    getBefottMw
+    delBefottMw
