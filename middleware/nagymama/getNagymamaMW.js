@@ -6,6 +6,13 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        next();
+        // TODO: get data from DB
+        res.locals.nagymama = {
+            _id: 'id1',
+            nev: 'Terike',
+            cim: 'Utca 12.',
+            tel: '111-222'
+        };
+        return next();
     };
 };

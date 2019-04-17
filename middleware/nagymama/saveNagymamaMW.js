@@ -7,6 +7,13 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        next();
+        if ((typeof req.body.nev === 'undefined') ||
+            (typeof req.body.cim === 'undefined') ||
+            (typeof req.body.tel === 'undefined')) {
+            return next();
+        }
+
+        // TODO: update item, save to db, or create new item
+        return res.redirect('/nagymama');
     };
 };

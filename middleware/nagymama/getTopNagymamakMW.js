@@ -6,6 +6,17 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        next();
+        // TODO: get data from DB
+        res.locals.toplista = [
+            {
+                nev: 'Marika',
+                befottszam: 15
+            },
+            {
+                nev: 'Terike',
+                befottszam: 11
+            }
+        ];
+        return next();
     };
 };

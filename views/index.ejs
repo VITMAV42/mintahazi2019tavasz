@@ -12,32 +12,29 @@
                         Befőtt szám
                     </th>
                 </tr>
-                <tr>
-                    <td>
-                        Marika
-                    </td>
-                    <td>
-                        11
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Terike
-                    </td>
-                    <td>
-                        9
-                    </td>
-                </tr>
+                <% toplista.forEach(function(toplistaElem){ %>
+                    <tr>
+                        <td>
+                            <%= toplistaElem.nev %>
+                        </td>
+                        <td>
+                            <%= toplistaElem.befottszam %>
+                        </td>
+                    </tr>
+                <% }); %>
             </table>
         </div>
         <div class="col-4">
             <h2>Admin</h2>
-            <form>
+            <% if (typeof error !== 'undefined') { %>
+                <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+            <form method="POST">
                 <div class="form-group">
                     <label for="pass">Jelszó</label>
                     <input type="password" class="form-control" id="pass" name="password">
                 </div>
-                <a class="btn btn-primary" href="/nagymama">Belépés</a>
+                <input type="submit" class="btn btn-primary" value="Belépés"/>
             </form>
         </div>
     </div>

@@ -1,5 +1,6 @@
 const authMW = require('../middleware/auth/authMW');
 const checkPassMW = require('../middleware/auth/checkPassMW');
+const logoutMW = require('../middleware/auth/logoutMW');
 const renderMW = require('../middleware/renderMW');
 const delBefottMW = require('../middleware/befott/delBefottMW');
 const getBefottekMW = require('../middleware/befott/getBefottekMW');
@@ -14,15 +15,6 @@ const saveNagymamaMW = require('../middleware/nagymama/saveNagymamaMW');
 module.exports = function (app) {
     const objRepo = {};
 
-    app.use('/',
-        getTopNagymamakMW(objRepo),
-        checkPassMW(objRepo),
-        renderMW(objRepo, 'index'));
-
-    app.get('/nagymama',
-        authMW(objRepo),
-        getNagymamakMW(objRepo),
-        renderMW(objRepo, 'nagymamalista'));
     app.use('/nagymama/new',
         authMW(objRepo),
         saveNagymamaMW(objRepo),
@@ -36,12 +28,11 @@ module.exports = function (app) {
         authMW(objRepo),
         getNagymamaMW(objRepo),
         delNagymamaMW(objRepo));
-
-    app.get('/befott/:nagymamaid',
+    app.get('/nagymama',
         authMW(objRepo),
-        getNagymamaMW(objRepo),
-        getBefottekMW(objRepo),
-        renderMW(objRepo, 'egynagymamabefottjei'));
+        getNagymamakMW(objRepo),
+        renderMW(objRepo, 'nagymamalista'));
+
     app.use('/befott/:nagymamaid/new',
         authMW(objRepo),
         getNagymamaMW(objRepo),
@@ -59,4 +50,17 @@ module.exports = function (app) {
         getBefottMW(objRepo),
         delBefottMW(objRepo),
         renderMW(objRepo, 'befotteditnew'));
+    app.get('/befott/:nagymamaid',
+        authMW(objRepo),
+        getNagymamaMW(objRepo),
+        getBefottekMW(objRepo),
+        renderMW(objRepo, 'egynagymamabefottjei'));
+
+    app.use('/logout',
+        logoutMW(objRepo));
+
+    app.use('/',
+        getTopNagymamakMW(objRepo),
+        checkPassMW(objRepo),
+        renderMW(objRepo, 'index'));
 };

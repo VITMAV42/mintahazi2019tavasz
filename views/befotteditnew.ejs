@@ -4,22 +4,33 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2>Befőtt módosítás / létrehozás</h2>
-            <form>
+            <h2>Befőtt
+                <% if (typeof befott === 'undefined') { %>
+                    létrehozás
+                <% }else{ %>
+                    módosítás
+                <% } %>
+            </h2>
+            <small>Nagymama: <%= nagymama.nev %></small>
+            <hr/>
+            <form method="post">
                 <div class="form-group">
                     <label for="iz">Íz</label>
-                    <input type="text" class="form-control" id="iz" name="iz">
+                    <input type="text" class="form-control" id="iz" name="iz"
+                           value="<%= (typeof befott === 'undefined') ? '' : befott.iz %>">
                 </div>
                 <div class="form-group">
                     <label for="ev">Évjárat</label>
-                    <input type="text" class="form-control" id="ev" name="ev">
+                    <input type="text" class="form-control" id="ev" name="ev"
+                           value="<%= (typeof befott === 'undefined') ? '' : befott.ev %>">
                 </div>
                 <div class="form-group">
                     <label for="rating">Az unokák szerint...</label>
-                    <input type="text" class="form-control" id="rating" name="rating">
+                    <input type="text" class="form-control" id="rating" name="rating"
+                           value="<%= (typeof befott === 'undefined') ? '' : befott.rating %>">
                 </div>
-                <a class="btn btn-primary" href="/egynagymamabefottjei.html">Mentés</a>
-                <a class="btn btn-link" href="/egynagymamabefottjei.html">Mégsem</a>
+                <input type="submit" class="btn btn-primary" value="Mentés"/>
+                <a class="btn btn-link" href="/befott/<%= nagymama._id %>">Mégsem</a>
             </form>
         </div>
     </div>

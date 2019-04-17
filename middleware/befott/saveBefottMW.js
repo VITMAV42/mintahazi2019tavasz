@@ -7,6 +7,14 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        next();
+        if ((typeof req.body.iz === 'undefined') ||
+            (typeof req.body.ev === 'undefined') ||
+            (typeof req.body.rating === 'undefined') ||
+            (typeof res.locals.nagymama === 'undefined')) {
+            return next();
+        }
+
+        // TODO: update item, save to db, or create new item
+        return res.redirect('/befott/' + res.locals.nagymama._id);
     };
 };

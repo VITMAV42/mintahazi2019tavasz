@@ -1,6 +1,5 @@
 <%- include('header') -%>
 <%- include('menu') -%>
-
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -32,10 +31,11 @@
                             <%= egyNagymama.tel %>
                         </td>
                         <td style="width:30px;white-space: nowrap">
-                            <a href="/egynagymamabefottjei.html" class="btn btn-sm btn-success">Befőttek</a>
+                            <a href="/befott/<%= egyNagymama._id %>" class="btn btn-sm btn-success">Befőttek</a>
                             <a href="/nagymama/edit/<%= egyNagymama._id %>" class="btn btn-sm btn-primary"><i
                                         class="far fa-edit"></i></a>
-                            <a href="#" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+                            <a href="/nagymama/del/<%= egyNagymama._id %>" class="btn btn-sm btn-danger"><i
+                                        class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 <% }); %>

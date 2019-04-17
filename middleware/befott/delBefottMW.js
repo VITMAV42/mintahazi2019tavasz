@@ -6,6 +6,10 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        next();
+        if (typeof res.locals.befott === 'undefined') {
+            return next();
+        }
+        // TODO: do the delete from DB
+        return res.redirect('/befott/' + res.locals.nagymama._id);
     };
 };
