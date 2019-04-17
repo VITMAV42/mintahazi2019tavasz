@@ -1,0 +1,49 @@
+<%- include('header') -%>
+<%- include('menu') -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Nagymama lista</h2>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>
+                        Név
+                    </th>
+                    <th>
+                        Cím
+                    </th>
+                    <th>
+                        Telefonszám
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+                <% nagymamak.forEach(function(egyNagymama){ %>
+                    <tr>
+                        <td>
+                            <%= egyNagymama.nev %>
+                        </td>
+                        <td>
+                            <%= egyNagymama.cim %>
+                        </td>
+                        <td>
+                            <%= egyNagymama.tel %>
+                        </td>
+                        <td style="width:30px;white-space: nowrap">
+                            <a href="/egynagymamabefottjei.html" class="btn btn-sm btn-success">Befőttek</a>
+                            <a href="/nagymama/edit/<%= egyNagymama._id %>" class="btn btn-sm btn-primary"><i
+                                        class="far fa-edit"></i></a>
+                            <a href="#" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+            <br/>
+            <a href="/nagymama/new" class="btn btn-block btn-primary">Új nagymama hozzáadása</a>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') -%>

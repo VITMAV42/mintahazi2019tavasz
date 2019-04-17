@@ -1,0 +1,28 @@
+<%- include('header') -%>
+<%- include('menu') -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Befőtt módosítás / létrehozás</h2>
+            <form>
+                <div class="form-group">
+                    <label for="iz">Íz</label>
+                    <input type="text" class="form-control" id="iz" name="iz">
+                </div>
+                <div class="form-group">
+                    <label for="ev">Évjárat</label>
+                    <input type="text" class="form-control" id="ev" name="ev">
+                </div>
+                <div class="form-group">
+                    <label for="rating">Az unokák szerint...</label>
+                    <input type="text" class="form-control" id="rating" name="rating">
+                </div>
+                <a class="btn btn-primary" href="/egynagymamabefottjei.html">Mentés</a>
+                <a class="btn btn-link" href="/egynagymamabefottjei.html">Mégsem</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') -%>
