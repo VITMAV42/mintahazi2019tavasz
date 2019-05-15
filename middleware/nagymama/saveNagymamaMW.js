@@ -6,14 +6,15 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
-
+module.exports = function(objectrepository) {
     const NagymamaModel = requireOption(objectrepository, 'NagymamaModel');
 
-    return function (req, res, next) {
-        if ((typeof req.body.nev === 'undefined') ||
-            (typeof req.body.cim === 'undefined') ||
-            (typeof req.body.tel === 'undefined')) {
+    return function(req, res, next) {
+        if (
+            typeof req.body.nev === 'undefined' ||
+            typeof req.body.cim === 'undefined' ||
+            typeof req.body.tel === 'undefined'
+        ) {
             return next();
         }
 
@@ -25,7 +26,7 @@ module.exports = function (objectrepository) {
         res.locals.nagymama.cim = req.body.cim;
         res.locals.nagymama.tel = req.body.tel;
 
-        res.locals.nagymama.save((err) => {
+        res.locals.nagymama.save(err => {
             if (err) {
                 return next(err);
             }

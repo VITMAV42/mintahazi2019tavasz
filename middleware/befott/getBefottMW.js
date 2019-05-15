@@ -4,19 +4,22 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
+module.exports = function(objectrepository) {
     const BefottModel = requireOption(objectrepository, 'BefottModel');
 
-    return function (req, res, next) {
-        BefottModel.findOne({
-            _id: req.params.befottid
-        }, (err, befott) => {
-            if (err || !befott) {
-                return next(err);
-            }
+    return function(req, res, next) {
+        BefottModel.findOne(
+            {
+                _id: req.params.befottid
+            },
+            (err, befott) => {
+                if (err || !befott) {
+                    return next(err);
+                }
 
-            res.locals.befott = befott;
-            return next();
-        });
+                res.locals.befott = befott;
+                return next();
+            }
+        );
     };
 };

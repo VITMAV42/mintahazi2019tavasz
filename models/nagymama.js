@@ -4,7 +4,7 @@ const db = require('../config/db');
 const Nagymama = db.model('Nagymama', {
     nev: String,
     cim: String,
-    tel: String,
+    tel: String
 });
 
 module.exports = Nagymama;

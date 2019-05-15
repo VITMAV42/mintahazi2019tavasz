@@ -5,14 +5,16 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
+module.exports = function(objectrepository) {
     const BefottModel = requireOption(objectrepository, 'BefottModel');
 
-    return function (req, res, next) {
-        if ((typeof req.body.iz === 'undefined') ||
-            (typeof req.body.ev === 'undefined') ||
-            (typeof req.body.rating === 'undefined') ||
-            (typeof res.locals.nagymama === 'undefined')) {
+    return function(req, res, next) {
+        if (
+            typeof req.body.iz === 'undefined' ||
+            typeof req.body.ev === 'undefined' ||
+            typeof req.body.rating === 'undefined' ||
+            typeof res.locals.nagymama === 'undefined'
+        ) {
             return next();
         }
 
@@ -29,12 +31,12 @@ module.exports = function (objectrepository) {
         res.locals.befott.rating = req.body.rating;
         res.locals.befott._befozo = res.locals.nagymama._id;
 
-        res.locals.befott.save((err) => {
+        res.locals.befott.save(err => {
             if (err) {
                 return next(err);
             }
 
-            return res.redirect('/befott/' + res.locals.nagymama._id);
+            return res.redirect(`/befott/${res.locals.nagymama._id}`);
         });
     };
 };

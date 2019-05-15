@@ -4,18 +4,18 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
-    return function (req, res, next) {
+module.exports = function(objectrepository) {
+    return function(req, res, next) {
         if (typeof res.locals.nagymama === 'undefined') {
             return next();
         }
 
-        res.locals.nagymama.remove((err) => {
+        res.locals.nagymama.remove(err => {
             if (err) {
                 return next(err);
             }
 
             return res.redirect('/nagymama');
-        })
+        });
     };
 };

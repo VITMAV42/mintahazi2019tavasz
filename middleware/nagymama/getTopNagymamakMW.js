@@ -4,8 +4,8 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
-    return function (req, res, next) {
+module.exports = function(objectrepository) {
+    return function(req, res, next) {
         // TODO: get data from DB
         res.locals.toplista = [
             {

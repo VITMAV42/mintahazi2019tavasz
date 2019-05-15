@@ -4,11 +4,10 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
-
+module.exports = function(objectrepository) {
     const NagymamaModel = requireOption(objectrepository, 'NagymamaModel');
 
-    return function (req, res, next) {
+    return function(req, res, next) {
         NagymamaModel.find({}, (err, nagymamak) => {
             if (err) {
                 return next(err);

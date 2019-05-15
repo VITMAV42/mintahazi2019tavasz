@@ -15,58 +15,70 @@ const saveNagymamaMW = require('../middleware/nagymama/saveNagymamaMW');
 const NagymamaModel = require('../models/nagymama');
 const BefottModel = require('../models/befott');
 
-module.exports = function (app) {
+module.exports = function(app) {
     const objRepo = {
         NagymamaModel: NagymamaModel,
         BefottModel: BefottModel
     };
 
-    app.use('/nagymama/new',
+    app.use(
+        '/nagymama/new',
         authMW(objRepo),
         saveNagymamaMW(objRepo),
-        renderMW(objRepo, 'nagymamaeditnew'));
-    app.use('/nagymama/edit/:nagymamaid',
+        renderMW(objRepo, 'nagymamaeditnew')
+    );
+    app.use(
+        '/nagymama/edit/:nagymamaid',
         authMW(objRepo),
         getNagymamaMW(objRepo),
         saveNagymamaMW(objRepo),
-        renderMW(objRepo, 'nagymamaeditnew'));
-    app.get('/nagymama/del/:nagymamaid',
+        renderMW(objRepo, 'nagymamaeditnew')
+    );
+    app.get(
+        '/nagymama/del/:nagymamaid',
         authMW(objRepo),
         getNagymamaMW(objRepo),
-        delNagymamaMW(objRepo));
-    app.get('/nagymama',
+        delNagymamaMW(objRepo)
+    );
+    app.get(
+        '/nagymama',
         authMW(objRepo),
         getNagymamakMW(objRepo),
-        renderMW(objRepo, 'nagymamalista'));
+        renderMW(objRepo, 'nagymamalista')
+    );
 
-    app.use('/befott/:nagymamaid/new',
+    app.use(
+        '/befott/:nagymamaid/new',
         authMW(objRepo),
         getNagymamaMW(objRepo),
         saveBefottMW(objRepo),
-        renderMW(objRepo, 'befotteditnew'));
-    app.use('/befott/:nagymamaid/edit/:befottid',
+        renderMW(objRepo, 'befotteditnew')
+    );
+    app.use(
+        '/befott/:nagymamaid/edit/:befottid',
         authMW(objRepo),
         getNagymamaMW(objRepo),
         getBefottMW(objRepo),
         saveBefottMW(objRepo),
-        renderMW(objRepo, 'befotteditnew'));
-    app.get('/befott/:nagymamaid/del/:befottid',
+        renderMW(objRepo, 'befotteditnew')
+    );
+    app.get(
+        '/befott/:nagymamaid/del/:befottid',
         authMW(objRepo),
         getNagymamaMW(objRepo),
         getBefottMW(objRepo),
         delBefottMW(objRepo),
-        renderMW(objRepo, 'befotteditnew'));
-    app.get('/befott/:nagymamaid',
+        renderMW(objRepo, 'befotteditnew')
+    );
+    app.get(
+        '/befott/:nagymamaid',
         authMW(objRepo),
         getNagymamaMW(objRepo),
         getBefottekMW(objRepo),
-        renderMW(objRepo, 'egynagymamabefottjei'));
+        renderMW(objRepo, 'egynagymamabefottjei')
+    );
 
-    app.use('/logout',
-        logoutMW(objRepo));
+    app.use('/logout', logoutMW(objRepo));
 
-    app.use('/',
-        getTopNagymamakMW(objRepo),
-        checkPassMW(objRepo),
-        renderMW(objRepo, 'index'));
+    app.use('/', getTopNagymamakMW(objRepo), checkPassMW(objRepo), renderMW(objRepo, 'index'));
 };
