@@ -5,7 +5,11 @@ const requireOption = require('../requireOption');
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        // TODO: check if the user is authed or not
+        if (typeof req.session.belepve === 'undefined' ||
+            req.session.belepve !== true) {
+            return res.redirect('/');
+        }
+
         next();
     };
 };

@@ -9,7 +9,13 @@ module.exports = function (objectrepository) {
         if (typeof res.locals.befott === 'undefined') {
             return next();
         }
-        // TODO: do the delete from DB
-        return res.redirect('/befott/' + res.locals.nagymama._id);
+
+        res.locals.befott.remove((err) => {
+            if (err) {
+                return next(err);
+            }
+
+            return res.redirect('/befott/' + res.locals.nagymama._id);
+        })
     };
 };

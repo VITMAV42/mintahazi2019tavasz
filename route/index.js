@@ -12,8 +12,14 @@ const getNagymamaMW = require('../middleware/nagymama/getNagymamaMW');
 const getTopNagymamakMW = require('../middleware/nagymama/getTopNagymamakMW');
 const saveNagymamaMW = require('../middleware/nagymama/saveNagymamaMW');
 
+const NagymamaModel = require('../models/nagymama');
+const BefottModel = require('../models/befott');
+
 module.exports = function (app) {
-    const objRepo = {};
+    const objRepo = {
+        NagymamaModel: NagymamaModel,
+        BefottModel: BefottModel
+    };
 
     app.use('/nagymama/new',
         authMW(objRepo),

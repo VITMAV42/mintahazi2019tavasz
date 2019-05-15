@@ -11,8 +11,11 @@ module.exports = function (objectrepository) {
         }
 
         if (req.body.password === 'takibacsi') {
-            // TODO: create new session
-            return res.redirect('/nagymama');
+            req.session.belepve = true;
+            return req.session.save((err) => {
+
+                return res.redirect('/nagymama');
+            })
         }
 
         res.locals.error = 'Hibás jelszó!';
